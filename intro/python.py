@@ -15,10 +15,20 @@ my_number = 1
 
 
 # Primitive Datentypen in Python: 
+a = 0       # int
+a = 1.2     # float
+a = True    # bool
+a = "Text"  # str
 
 
 # Primitive Rechenoperationen in Python:
-
+x = 2
+y = 4
+print(x + y)
+print(x - y)
+print(x * (y + y))
+print(x / y)
+print(0.1 + 1)
 
 # Boolsche Operationen in Python
 
