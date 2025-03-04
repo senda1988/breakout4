@@ -31,9 +31,28 @@ print(x / y)
 print(0.1 + 1)
 
 # Boolsche Operationen in Python
+print(True and 3 > 2)
+print(3 >= 3)
+print(False or 1 == 2)
+print(not True)
 
 
-# Fallunterscheidungen in Python
+
+# ----- Puffer um Zeilengleichheit zu erreichen ----
+
+
+
+
+# Fallunterscheidungen in Python (if, elif, else)
+name = "Tom"
+if name == "Lukas":
+    print("Alles Gute")
+
+elif name == "Tom":
+    print("Bis Morgen")
+
+else:
+    print("Wer bist du?")
 
 
 # Listen in Python:
