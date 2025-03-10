@@ -38,3 +38,9 @@ function createHTMLList(liste){
 
 my_list = ["lukas", "Tom", "Kevin", "Suheib"]
 console.log(createHTMLList(my_list))
+
+
+let array1 = [1,2,3]
+let array2 = ["Ich", "Du", "Wir"]
+
+console.log(array1.concat(array2))

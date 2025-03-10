@@ -1,5 +1,5 @@
 // my_list soll auf der Website dargestellt werden
-let my_list = ["Lukas", "Kevin", "Suheib"]
+let my_list = []
 
 // createHTMLList nimmt ein Javascript Array und gibt einen String für eine
 // ungeordnete HTML Liste zurück
@@ -26,9 +26,7 @@ function setUserInputList(){
     //Erstmal Text und div aus dem Dokument holen
     let userInput = document.getElementById("userInput")
     let text = userInput.value
-    let listDiv = document.getElementById("liste")
     let textList = text.split(",")
-    console.log(textList)
-    let content = createHTMLList(textList)
-    listDiv.innerHTML = content
+    my_list = my_list.concat(textList)
+    setListContent()
 }
