@@ -6,9 +6,13 @@
     <title>Spaß mit Listen</title>
     <script src="script.js"></script>
 </head>
-<body>
+<body onload="loadData()">
     <input id="userInput" placeholder="Put in List items, divided with comma">
     <button onclick="setUserInputList()">Elemente hinzufügen</button>
+    <p></p>
+    <input id="singleInput" placeholder="Add 1 item">
+    <button onclick="addListItem()">1 Element hinzufügen</button>
     <div id="liste"></div>
+    <button onclick="deleteLastItem()">Letztes Item löschen</button>
 </body>
 </html>

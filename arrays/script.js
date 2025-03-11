@@ -1,6 +1,21 @@
 // my_list soll auf der Website dargestellt werden
 let my_list = []
 
+
+function saveData(){
+    localStorage.setItem("my_list", JSON.stringify(my_list))
+}
+
+
+function loadData(){
+    const savedList = localStorage.getItem("my_list")
+    if (savedList !== null){
+        my_list = JSON.parse(savedList)
+        setListContent()
+    }
+}
+
+
 // createHTMLList nimmt ein Javascript Array und gibt einen String für eine
 // ungeordnete HTML Liste zurück
 function createHTMLList(liste){
@@ -29,4 +44,19 @@ function setUserInputList(){
     let textList = text.split(",")
     my_list = my_list.concat(textList)
     setListContent()
+    saveData()
+}
+
+function addListItem(){
+    let singleInputField = document.getElementById("singleInput")
+    let text = singleInputField.value
+    my_list.push(text)
+    setListContent()
+    saveData()
+}
+
+function deleteLastItem(){
+    my_list.pop()
+    setListContent()
+    saveData()
 }
