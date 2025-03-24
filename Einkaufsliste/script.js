@@ -11,10 +11,17 @@ addButton.addEventListener("click", () => {
     const artikel = artikelInput.value;
     const anzahl = anzahlInput.value;
     const preis = preisInput.value;
-
+    if (!artikel || !anzahl || !preis) {
+        alert("Bitte fülle alle Felder aus!");
+        return;
+    }
     // Neues Element erstellen und in die Liste einfügen
     const new_li = document.createElement("li");
-    new_li.textContent = `${anzahl} x ${artikel}: ${preis}€ p.P. ------ ${anzahl * preis}€`;
+
+    new_li.textContent = `${anzahl} x ${artikel}: ${preis}€ l'unité ------ ${anzahl * preis}€`;
+
+
+
 
     // Füge einen Löschen Button hinzu
     const deleteButton = document.createElement("button");
@@ -24,8 +31,22 @@ addButton.addEventListener("click", () => {
         gesamtPreis -= anzahl * preis;
         updatePreis();
     })
-    new_li.appendChild(deleteButton);
 
+    //Checkbox erstellen
+    const Checkbox = document.createElement("input");
+    Checkbox.type = "checkbox";
+    Checkbox.addEventListener("change", updatePreis);
+
+    //button löschen
+    const deletbutton = document.getElementById("deletbutton");
+    deletbutton.addEventListener("click", () => {
+        liste.remove();
+        updatePreis();
+    })
+
+
+    new_li.appendChild(deleteButton);
+    new_li.appendChild(Checkbox);
     liste.appendChild(new_li);
 
     // Gesamtpreis aktualisieren
@@ -36,8 +57,23 @@ addButton.addEventListener("click", () => {
     artikelInput.value = "";
     anzahlInput.value = "";
     preisInput.value = "";
-})
+
+}
+)
 
 function updatePreis() {
-    gesamt.textContent = `Gesamt: ${gesamtPreis}€`;
+    gesamtPreis = 0;
+
+    document.querySelectorAll("#liste li").forEach((item) => {
+        const checkbox = item.querySelector("input[type='checkbox']");
+        const priceText = item.textContent.split("------")[1].replace("€", "");
+
+
+        if (checkbox.checked) {
+            gesamtPreis += parseFloat(priceText);
+        }
+    });
+
+    // Mise à jour du prix total affiché
+    gesamt.textContent = `Total : ${gesamtPreis}€`;
 }
