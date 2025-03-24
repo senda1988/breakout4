@@ -17,9 +17,25 @@ addButton.addEventListener("click", () => {
     }
     // Neues Element erstellen und in die Liste einfügen
     const new_li = document.createElement("li");
+    const kategorieInput = document.getElementById("kategorie");
+    const kategorie = kategorieInput.value;
+    let emoji = "";
+    if (kategorie === "obst") emoji = "🍏";
+    else if (kategorie === "gemuese") emoji = "🥦";
+    else if (kategorie === "drogerie") emoji = "🧴";
+    else if (kategorie === "konserven") emoji = "🥫";
+    else if (kategorie === "getraenke") emoji = "🍾";
+    else if (kategorie === "gebaeck") emoji = "🍞";
+    else if (kategorie === "krams") emoji = "🕹️";
+    new_li.textContent = `${emoji} ${anzahl} x ${artikel}: ${preis}€ p.P. ------ ${anzahl * preis}€`;
 
-    new_li.textContent = `${anzahl} x ${artikel}: ${preis}€ l'unité ------ ${anzahl * preis}€`;
 
+
+
+    //Checkbox erstellen
+    const Checkbox = document.createElement("input");
+    Checkbox.type = "checkbox";
+    Checkbox.addEventListener("change", updatePreis);
 
 
 
@@ -31,12 +47,6 @@ addButton.addEventListener("click", () => {
         gesamtPreis -= anzahl * preis;
         updatePreis();
     })
-
-    //Checkbox erstellen
-    const Checkbox = document.createElement("input");
-    Checkbox.type = "checkbox";
-    Checkbox.addEventListener("change", updatePreis);
-
     //button löschen
     const deletbutton = document.getElementById("deletbutton");
     deletbutton.addEventListener("click", () => {
@@ -48,7 +58,6 @@ addButton.addEventListener("click", () => {
     new_li.appendChild(deleteButton);
     new_li.appendChild(Checkbox);
     liste.appendChild(new_li);
-
     // Gesamtpreis aktualisieren
     gesamtPreis += anzahl * preis;
     updatePreis();
@@ -60,6 +69,27 @@ addButton.addEventListener("click", () => {
 
 }
 )
+
+const modeLight = document.getElementById("modeLight");
+const modeDark = document.getElementById("modeDark")
+const bodyIdJs = document.getElementById("bodyId");
+modeLight.addEventListener("click", () => {
+    bodyIdJs.style.backgroundColor = "white";
+    bodyIdJs.style.color = "black";
+    modeLight.style.visibility = "hidden";
+    modeDark.style.visibility = "visible"
+
+
+})
+
+modeDark.addEventListener("click", () => {
+    bodyIdJs.style.backgroundColor = "black";
+    bodyIdJs.style.color = "white";
+    modeLight.style.visibility = "visible";
+    modeDark.style.visibility = "hidden"
+
+
+})
 
 function updatePreis() {
     gesamtPreis = 0;
@@ -74,6 +104,20 @@ function updatePreis() {
         }
     });
 
-    // Mise à jour du prix total affiché
-    gesamt.textContent = `Total : ${gesamtPreis}€`;
+
+    gesamt.textContent = `Gesamt Preis : ${gesamtPreis}€`;
 }
+
+
+
+let input = document.getElementById("preis");
+input.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("addButton").click();
+    }
+})
+
+
+
+
