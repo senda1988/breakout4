@@ -70,26 +70,6 @@ addButton.addEventListener("click", () => {
 }
 )
 
-const modeLight = document.getElementById("modeLight");
-const modeDark = document.getElementById("modeDark")
-const bodyIdJs = document.getElementById("bodyId");
-modeLight.addEventListener("click", () => {
-    bodyIdJs.style.backgroundColor = "white";
-    bodyIdJs.style.color = "black";
-    modeLight.style.visibility = "hidden";
-    modeDark.style.visibility = "visible"
-
-
-})
-
-modeDark.addEventListener("click", () => {
-    bodyIdJs.style.backgroundColor = "black";
-    bodyIdJs.style.color = "white";
-    modeLight.style.visibility = "visible";
-    modeDark.style.visibility = "hidden"
-
-
-})
 
 function updatePreis() {
     gesamtPreis = 0;
@@ -119,5 +99,22 @@ input.addEventListener("keypress", function (event) {
 })
 
 
+const themeToggle = document.getElementById("themeToggle");
+// Prüfen, ob bereits ein Theme gespeichert wurde
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️ Light Mode";
+}
 
+// Event-Listener für Button
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 
+    if (document.body.classList.contains("dark")) {
+        themeToggle.textContent = "☀️ Light Mode";
+        localStorage.setItem("theme", "dark");
+    } else {
+        themeToggle.textContent = "🌙 Dark Mode";
+        localStorage.setItem("theme", "light");
+    }
+});

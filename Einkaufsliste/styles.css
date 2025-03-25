@@ -1,6 +1,6 @@
 body {
-    color: white;
-    background-color: rgb(44, 43, 43);
+    color: black;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     padding-left: 20%;
@@ -76,4 +76,26 @@ h5 {
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+/*dark mode*/
+
+body {
+    font-family: Arial, sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+    background-color: #222;
+    color: #fff;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
 }
